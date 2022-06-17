@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/9769c63bf6.js" crossorigin="anonymous"></script>
 </head>
 <body class="landing text-white">
-    <div class="container h-100 d-flex justify-content-center align-items-center">
+    <div class="main h-100 d-flex justify-content-center align-items-center">
         <% if (status == 'error') { %>
             <div class="col">
                 <div class="alert alert-danger" role="alert">
@@ -36,16 +36,18 @@
             <div class="row bg-card">
                 <div class="col-lg-7 col-12 p-4">
                     <div class="col">
-                        <div class="fs-5 fw-bold">Weather App</div>
+                        <div class="app fw-bold">Weather App</div>
                         <iframe class="maps mx-5 d-none d-lg-block" width="500" height="200" style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCBNvZL3QSvOuw-DBk6jKAVItNFgsEnxlQ&q=<%= city %>"></iframe>
-                        <iframe class="maps d-lg-none d-block" width="100%" height="400" style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCBNvZL3QSvOuw-DBk6jKAVItNFgsEnxlQ&q=jember<%= city %>"></iframe>
-                        <div class="d-flex flex-row content">
-                            <div class="temp fw-bold"><%= (main['temp']/10).toFixed(1) %></div>
-                            <div class="fs-1 fw-bold">o</div>
-                            <div class="temp fw-bold">C</div>
+                        <iframe class="maps d-lg-none d-block" width="100%" height="600" style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCBNvZL3QSvOuw-DBk6jKAVItNFgsEnxlQ&q=jember<%= city %>"></iframe>
+                        <div class="d-flex flex-column flex-lg-row content">
+                            <div class="d-flex flex-row justify-content-center">
+                                <div class="temp fw-bold"><%= (main['temp']/10).toFixed(1) %></div>
+                                <div class="fs-3 fw-bold">o</div>
+                                <div class="temp fw-bold">C</div>
+                            </div>
                             <div class="mx-2">
                                 <div class="location"><%= city[0].toUpperCase() + city.substring(1) %></div>
-                                <div class="humid">Humidity : <%= main['humidity'] %></div>
+                                <div class="humid">Humidity : <%= main['humidity'] %>%</div>
                             </div>
                             <div class="status">-<%= weather[0]['main'] %></div>
                         </div>
@@ -54,17 +56,17 @@
                 <div class="col-md-5 data">
                     <div class="col">
                         <form id="cityset" action="landing" class="form-control" style="background:transparent;width: 100%;" method="post">
-                            <input type="text" class="text-white" style="font-size: 16px; height: 40px; width: 90%; background: transparent; border: none;" name="city" placeholder="Search by City">
+                            <input type="text" class="text-white inputlanding" name="city" placeholder="Search by City">
                             <span style="margin-top: 0.8em; margin-left: 0.5em;"><a role="button" type="submit" onclick="document.getElementById('cityset').submit();"><span><i class="fa-solid fa-arrow-right-to-bracket fa-xl"></i></span></a></span>
                         </form>
                         <hr>
                         <div class="col detail">
-                            <h3>Details</h3>
+                            <h3 class="headdetail">Details</h3>
                             <hr>
                             <div class="detail-text">Wind : <%= wind['speed'] %> m/s</div>
                             <div class="detail-text">Visibility : <%= (visibility/1000).toFixed() %> km</div>
                             <div class="detail-text">Pressure : <%= main['pressure'] %> hPa</div>
-                            <h3 style="margin-top: 20px;">Location</h3>
+                            <h3 class="headdetail" style="margin-top: 20px;">Location</h3>
                             <hr>
                             <div class="detail-text">Longitude : <%= coord['lon'] %></div>
                             <div class="detail-text">Latitude : <%= coord['lat'] %></div>
